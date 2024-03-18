@@ -1,0 +1,8 @@
+{:tasks
+ {:requires ([babashka.process :refer [shell process exec]]
+             [babashka.fs      :as fs]
+             [manage           :as m]
+             [clojure.string   :as str])
+  convert   (let [input  (first *command-line-args*)
+                  output (str (first (str/split input (re-pattern "\\."))) ".tif")]
+              (shell "gdal_translate" input output "-of" "COG"))}}

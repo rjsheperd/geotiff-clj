@@ -1,0 +1,13 @@
+{:deps {org.locationtech.geotrellis/geotrellis-raster_2.13 {:mvn/version "3.7.1"}
+        org.locationtech.geotrellis/geotrellis-spark_2.13  {:mvn/version "3.7.1"}
+        org.locationtech.geotrellis/geotrellis-store_2.13  {:mvn/version "3.7.1"}}
+ :aliases
+ {:geotiff-info
+  {:exec-fn   geotrellis-clj.core/get-cog-info
+   :exec-args {:url ""}}
+
+  :geotiff-value
+  {:exec-fn   geotrellis-clj.core/get-cog-value
+   :exec-args {:url ""
+               :row 0
+               :col 0}}}}

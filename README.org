@@ -1,0 +1,48 @@
+#+TITLE: Cloud-Optimized GeoTIFFs
+#+AUTHOR: RJ Sheperd
+
+** Intro to COGs
+
+[[https://guide.cloudnativegeo.org/cloud-optimized-geotiffs/intro.html][Introduction to Cloud-Optimized GeoTIFFS (COGs)]]
+
+** Validating your COG's
+
+*** Install =miniconda=
+https://docs.anaconda.com/free/anaconda/install/
+
+*** Create the Conda environment
+#+BEGIN_SRC bash
+  conda env create -f environment.yml
+  conda activate rio-cogeo
+#+END_SRC
+
+*** Validate a given URL/file
+#+BEGIN_SRC bash
+  rio cogeo validate <url/file>
+#+END_SRC
+
+** Turn your GeoTIFF into COG
+
+#+BEGIN_SRC bash
+  bb convert <input-file>
+
+  # Or, if you don't have Babashka:
+  gdal_translate <input-file> <output-file> -of COG
+#+END_SRC
+
+** Get GeoTiff Data
+
+WIP
+
+*** COMMENT
+
+**** Get info about a GeoTIFF
+
+#+BEGIN_SRC 
+  bb info <url>
+#+END_SRC
+
+**** Get value within a GeoTIFF
+#+BEGIN_SRC 
+  bb value <url> <row> <column>
+#+END_SRC
