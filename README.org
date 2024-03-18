@@ -30,19 +30,21 @@ https://docs.anaconda.com/free/anaconda/install/
   gdal_translate <input-file> <output-file> -of COG
 #+END_SRC
 
-** Get GeoTiff Data
+** Using GeoTrellis to get GeoTiff Data
 
-WIP
+/Work In Progress!/
+
+- [[https://github.com/locationtech/geotrellis][GeoTrellis]]
 
 *** COMMENT
 
 **** Get info about a GeoTIFF
 
-#+BEGIN_SRC 
+#+BEGIN_SRC
   bb info <url>
 #+END_SRC
 
 **** Get value within a GeoTIFF
-#+BEGIN_SRC 
+#+BEGIN_SRC
   bb value <url> <row> <column>
 #+END_SRC
