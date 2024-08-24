@@ -12,18 +12,37 @@
     s
 
     (string? s)
-    (java.net.URL. s)))
+    (java.net.URL. s)
 
-(defn get-cog-info
+    (symbol? s)
+    (-> s
+     (str)
+     (java.net.URL.))))
+
+(defn ->info [geotiff]
+  (let [extent (.extent geotiff)]
+    {:rows   (.rows geotiff)
+     :cols   (.cols geotiff)
+     :bands  (.bandCount geotiff)
+     :crs    (.crs geotiff)
+     :extent {:x-min  (.xmin extent)
+              :y-min  (.ymin extent)
+              :x-max  (.xmax extent)
+              :y-max  (.ymax extent)
+              :width  (.height extent)
+              :height (.height extent)}}))
+
+(defn get-info
   "Fetches the value of a specific cell from a Cloud Optimized GeoTIFF."
   [{:keys [url]}]
+  #_(println [:COG url (string? url) (type url) (->url url)])
   (let [cog-url          (->url url)
         range-reader     (HttpRangeReader. cog-url true)
         streaming-reader (RangeReader/rangeReaderToStreamingByteReader range-reader)
         geotiff          (GeoTiffReader/readSingleband streaming-reader)]
-    geotiff))
+    (->info geotiff)))
 
-(defn get-cog-cell-value
+(defn get-value
   "Fetches the value of a specific cell from a Cloud Optimized GeoTIFF."
   [{:keys [url col row]}]
   (let [cog-url          (->url url)
@@ -39,7 +58,7 @@
 
   (type (->url cog-url))
 
-  (get-cog-info {:url cog-url})
-  (get-cog-cell-value {:url cog-url :row 1000 :col 1000})
+  (get-info {:url cog-url})
+  (get-value {:url cog-url :row 1000 :col 1000})
 
   )

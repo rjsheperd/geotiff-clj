@@ -30,13 +30,13 @@ https://docs.anaconda.com/free/anaconda/install/
   gdal_translate <input-file> <output-file> -of COG
 #+END_SRC
 
-** Using GeoTrellis to get GeoTiff Data
+** Using GeoTrellis within Clojure
 
 /Work In Progress!/
 
 - [[https://github.com/locationtech/geotrellis][GeoTrellis]]
 
-*** COMMENT
+** Babashka Commands
 
 **** Get info about a GeoTIFF
 

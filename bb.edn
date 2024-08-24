@@ -1,8 +1,17 @@
 {:tasks
  {:requires ([babashka.process :refer [shell process exec]]
              [babashka.fs      :as fs]
-             [manage           :as m]
              [clojure.string   :as str])
+
   convert   (let [input  (first *command-line-args*)
                   output (str (first (str/split input (re-pattern "\\."))) ".tif")]
-              (shell "gdal_translate" input output "-of" "COG"))}}
+              (shell "gdal_translate" input output "-of" "COG"))
+
+  info      (let [url (first *command-line-args*)]
+              (clojure "-X:info" ":url" url))
+
+  value      (let [cli-args      *command-line-args*
+                   [url row col] cli-args]
+               (println url row col)
+               (clojure "-X:value" ":url" url ":row" row ":col" col))}}
+
